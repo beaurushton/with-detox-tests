@@ -1,0 +1,13 @@
+diff --git a/node_modules/detox/src/devices/ios/AppleSimUtils.js b/node_modules/detox/src/devices/ios/AppleSimUtils.js
+index 84797e9..6cd23d8 100644
+--- a/node_modules/detox/src/devices/ios/AppleSimUtils.js
++++ b/node_modules/detox/src/devices/ios/AppleSimUtils.js
+@@ -280,7 +280,7 @@ class AppleSimUtils {
+   }
+ 
+   _joinLaunchArgs(launchArgs) {
+-    return _.map(launchArgs, (v, k) => `-${k} "${v}"`).join(' ').trim();
++    return _.map(launchArgs, (v, k) => `-${k} ${v}`).join(' ').trim();
+   }
+ 
+   async _launchMagically(frameworkPath, udid, bundleId, launchArgs, languageAndLocale) {

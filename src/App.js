@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { registerRootComponent } from 'expo';
 
-export default class App extends Component {
+class App extends Component {
   state = {
     greeting: undefined,
   };
@@ -60,3 +61,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default registerRootComponent(App);

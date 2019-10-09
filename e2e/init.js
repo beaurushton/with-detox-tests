@@ -1,11 +1,26 @@
-require('babel-polyfill');
-const detox = require('detox');
+import { cleanup, init } from 'detox';
+
+const adapter = require('detox/runners/jest/adapter');
+const specReporter = require('detox/runners/jest/specReporter');
+
 const config = require('../package.json').detox;
 
-before(async () => {
-  await detox.init(config);
+jest.setTimeout(60000);
+jasmine.getEnv().addReporter(adapter);
+
+// This takes care of generating status logs on a per-spec basis. By default, jest only reports at file-level.
+// This is strictly optional.
+jasmine.getEnv().addReporter(specReporter);
+
+beforeAll(async () => {
+  await init(config);
 });
 
-after(async () => {
-  await detox.cleanup();
+beforeEach(async () => {
+  await adapter.beforeEach();
+});
+
+afterAll(async () => {
+  await adapter.afterAll();
+  await cleanup();
 });
